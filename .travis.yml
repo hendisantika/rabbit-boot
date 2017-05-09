@@ -1,0 +1,16 @@
+language: java
+jdk: oraclejdk8
+services: rabbitmq
+env:
+  SPRING_PROFILES_ACTIVE: default
+script:
+- bash gradlew build
+- bash gradlew runDefault
+after_script: bash gradlew dependencyUpdates -Drevision=release
+cache.directories:
+- /var/lib/docker
+- $HOME/.gradle
+- $HOME/.m2
+- .gradle
+- gradle*
+notifications.on_failure: never

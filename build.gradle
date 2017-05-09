@@ -1,0 +1,50 @@
+plugins {
+  id 'java'
+  id 'idea'
+  id 'eclipse'
+  id 'application'
+  // gradle dependencyUpdates -Drevision=release
+  id 'com.github.ben-manes.versions' version '0.13.0'
+  id 'org.springframework.boot' version '1.4.3.RELEASE'
+  id 'io.spring.dependency-management' version '0.6.1.RELEASE'
+}
+
+jar { baseName = 'rabbit-boot' }
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+mainClassName = 'daggerok.messaging.rabbit.MessagingRabbitApplication'
+
+repositories { jcenter() }
+
+dependencies {
+  compile 'org.springframework.boot:spring-boot-starter-amqp',
+      'org.springframework.amqp:spring-rabbit',
+      'org.springframework.boot:spring-boot-starter-mustache',
+      'org.springframework.boot:spring-boot-devtools',
+      'org.webjars:webjars-locator:0.3+',
+      'org.webjars:bootstrap:3+',
+      'org.webjars:jquery:2+',
+      'org.projectlombok:lombok'
+
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// gradle bootRun -Dserver.context-path=/app
+bootRun { systemProperties = System.properties }
+
+// gradle run -Dserver.context-path=/app
+run { systemProperties = System.properties }
+
+task wrapper(type: Wrapper) { gradleVersion = '3.3' }
+
+[ // use as gradle task: gradle runDefault
+  runDefault: 'daggerok.messaging.rabbit.plain.DefaultExchangeDemo',
+].each { taskName, mainClass ->
+  println "create JavaExec task '$taskName' for main class: $mainClass"
+  tasks.create(name: taskName, type: JavaExec, dependsOn: classes) {
+    group 'JavaExec'
+    classpath = sourceSets.main.runtimeClasspath
+    main mainClass
+  }
+}

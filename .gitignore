@@ -1,0 +1,14 @@
+**/.idea/
+**/.gradle/
+**/build/
+**/classes/
+*/gradle/
+**/node_modules/
+**/bower_components/
+src/main/resources/public/
+**/*.iml
+**/*.ipr
+**/*.iws
+**/*.log*
+**/*.dump
+rabbitmq_server-3.6.0/

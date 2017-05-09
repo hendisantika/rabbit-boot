@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Boot Rabbit</title>
+  <meta name="base" content="{{ctx}}">
+  <link rel="stylesheet" href="{{ctx}}/webjars/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="{{ctx}}/app.css">
+</head>
+<body>
+<main class="container">
+  <h3>hello and welcome!</h3>
+  <div class=container">
+    <p>send your message to all</p>
+    <form
+        id="send-message-to-all-form"
+        action="{{ctx}}/message/send"
+        method="post">
+
+      <input
+          autofocus
+          type="text"
+          name="message"
+          autocomplete="off"
+          placeholder="message to all"
+          class="lg"/>
+
+      <input
+          class="btn btn-sm btn-default btn-shadow"
+          type="submit"
+          value="send"/>
+    </form>
+  </div>
+
+  <br/>
+  <hr/>
+  <br/>
+
+  <div class=container">
+    <p>send your message to simpleSender, workerQueueSender, publisher, routingSender, topicSender, rpcSenderReceiver...</p>
+    <form
+        id="send-message-to-form"
+        action="{{ctx}}/message/send/to"
+        method="post">
+
+      <input
+          type="text"
+          name="message"
+          autocomplete="off"
+          placeholder="message to"
+          class="lg"/>
+
+      <input
+          type="text"
+          name="dst"
+          autocomplete="off"
+          placeholder="destination"
+          class="lg"/>
+
+      <input
+          class="btn btn-sm btn-default btn-shadow"
+          type="submit"
+          value="send"/>
+    </form>
+  </div>
+</main>
+<footer id="footer" class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container text-center">
+    <p class="muted credit text-muted">
+      2016 &copy; <a href="https://github.com/daggerok">daggerok</a>
+    </p>
+  </div>
+</footer>
+<script src="{{ctx}}/webjars/jquery/jquery.js"></script>
+<script src="{{ctx}}/webjars/bootstrap/js/bootstrap.js"></script>
+<script src="{{ctx}}/app.js"></script>
+</body>
+</html>
