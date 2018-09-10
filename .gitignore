@@ -12,3 +12,4 @@ src/main/resources/public/
 **/*.log*
 **/*.dump
 rabbitmq_server-3.6.0/
+var/lib/rabbitmq/mnesia/rabbit@my-rabbitmq-plugins-expand/
