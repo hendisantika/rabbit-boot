@@ -6,22 +6,20 @@ import com.hendisantika.messaging.rabbit.messaging.routing.RoutingSender;
 import com.hendisantika.messaging.rabbit.messaging.simple.SimpleSender;
 import com.hendisantika.messaging.rabbit.messaging.topics.TopicSender;
 import com.hendisantika.messaging.rabbit.messaging.workqueues.WorkerQueueSender;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MessagingRabbitApplicationTests {
 
