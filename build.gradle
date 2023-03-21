@@ -5,29 +5,44 @@ plugins {
   id 'application'
   // gradle dependencyUpdates -Drevision=release
   id 'com.github.ben-manes.versions' version '0.13.0'
-  id 'org.springframework.boot' version '3.0.3'
-  id 'io.spring.dependency-management' version '0.6.1.RELEASE'
+  id("org.springframework.boot") version "3.0.4"
+  id("io.spring.dependency-management") version "1.1.0"
 }
 
-jar { baseName = 'rabbit-boot' }
+//jar { baseName = 'rabbit-boot' }
+group = "daggerok.messaging.rabbit"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_17
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
-mainClassName = 'daggerok.messaging.rabbit.MessagingRabbitApplication'
+mainClassName = 'com.hendisantika.messaging.rabbit.MessagingRabbitApplication'
 
-repositories { jcenter() }
+//configurations {
+//  compileOnly {
+//    extendsFrom(configurations.annotationProcessor.get())
+//  }
+//}
+
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
 
 dependencies {
-  compile 'org.springframework.boot:spring-boot-starter-amqp',
-      'org.springframework.amqp:spring-rabbit',
-      'org.springframework.boot:spring-boot-starter-mustache',
-      'org.springframework.boot:spring-boot-devtools',
-      'org.webjars:webjars-locator:0.3+',
-      'org.webjars:bootstrap:3+',
-      'org.webjars:jquery:2+',
-      'org.projectlombok:lombok'
-
-  testCompile 'org.springframework.boot:spring-boot-starter-test'
+  implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-amqp")
+  implementation("org.springframework.amqp:spring-rabbit")
+  implementation("org.springframework.boot:spring-boot-starter-mustache")
+  compileOnly("org.projectlombok:lombok")
+  implementation("org.webjars:webjars-locator:0.3+")
+  implementation("org.webjars:bootstrap:3+")
+  implementation("org.webjars:jquery:2+")
+  developmentOnly("org.springframework.boot:spring-boot-devtools")
+  annotationProcessor("org.projectlombok:lombok")
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.springframework.amqp:spring-rabbit-test")
 }
 
 // gradle bootRun -Dserver.context-path=/app
@@ -35,8 +50,6 @@ bootRun { systemProperties = System.properties }
 
 // gradle run -Dserver.context-path=/app
 run { systemProperties = System.properties }
-
-task wrapper(type: Wrapper) { gradleVersion = '3.3' }
 
 [ // use as gradle task: gradle runDefault
   runDefault: 'daggerok.messaging.rabbit.plain.DefaultExchangeDemo',
