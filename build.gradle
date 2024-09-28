@@ -5,16 +5,16 @@ plugins {
   id 'application'
   // gradle dependencyUpdates -Drevision=release
   id 'com.github.ben-manes.versions' version '0.13.0'
-  id("org.springframework.boot") version "3.3.2"
+  id("org.springframework.boot") version "3.3.3"
   id("io.spring.dependency-management") version "1.1.5"
 }
 
 //jar { baseName = 'rabbit-boot' }
 group = "daggerok.messaging.rabbit"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
 
 mainClassName = 'com.hendisantika.messaging.rabbit.MessagingRabbitApplication'
 
